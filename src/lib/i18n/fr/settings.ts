@@ -32,5 +32,5 @@ export const settings: Messages['settings'] = {
 	aboutResort: (name: string) => `À propos de ${name}`,
 	aboutResortHint: 'Pistes, remontées et plans des pistes',
 	sourceCode: 'Code source sur GitHub',
-	sourceCodeHint: 'Le dépôt n’est pas encore public'
+	sourceCodeHint: 'Open source sous licence AGPL-3.0'
 };

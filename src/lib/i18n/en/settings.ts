@@ -29,5 +29,5 @@ export const settings = {
 	aboutResort: (name: string) => `About ${name}`,
 	aboutResortHint: 'Pistes, lifts and piste maps',
 	sourceCode: 'Source code on GitHub',
-	sourceCodeHint: 'Repository is not public yet'
+	sourceCodeHint: 'Open source under AGPL-3.0'
 };
