@@ -1,0 +1,16 @@
+[
+	{
+		"id": "sella-nevea-gilberti-panomax",
+		"name": "Sella Nevea Gilberti",
+		"provider": "panomax",
+		"pageUrl": "https://www.panomax.com/2665",
+		"imageUrl": "https://panodata.panomax.com/cams/1984/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/1984/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 13.462089,
+		"lat": 46.372414,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 21,
+		"cors": "none"
+	}
+]

@@ -1,0 +1,25 @@
+{
+	"name": "openski.org",
+	"short_name": "openski.org",
+	"description": "Piste conditions by the hour, lift queues counted from webcams, and routes that skip flats and drag lifts. Download a resort to use it without signal.",
+	"id": "/",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#f4f7fa",
+	"theme_color": "#7c3aed",
+	"categories": ["sports", "navigation", "travel"],
+	"icons": [
+		{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+		{ "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+		{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+	],
+	"shortcuts": [
+		{ "name": "Conditions now", "url": "/now" },
+		{ "name": "Lift queues", "url": "/now?tab=lifts" },
+		{ "name": "Start recording", "url": "/track" },
+		{ "name": "Plan a route", "url": "/route" }
+	]
+}

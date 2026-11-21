@@ -1,0 +1,36 @@
+[
+	{
+		"camera": "madritsch-huette-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 5647,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1342,
+				"height": 1400,
+				"rows": 2,
+				"cols": 14
+			},
+			"composite": {
+				"width": 18788,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "schoentauf-i",
+				"lift": "Schöntauf I - Beltovo I",
+				"liftOsm": "way/23740872",
+				"label": "Valley station gates",
+				"box": [
+					1265,
+					1785,
+					1585,
+					2005
+				],
+				"upscale": 1,
+				"notes": "Gates of the Schöntauf I chairlift, seen from the Madritsch hut. Placed on the 2026-11-21 11:00 full-resolution frame (about 15 people at the gates, each 100–150 px tall at full size)."
+			}
+		]
+	}
+]

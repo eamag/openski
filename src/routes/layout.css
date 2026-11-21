@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+:root {
+	--surface: #ffffff;
+	--surface-2: #f2f4f7;
+	--ink: #131722;
+	--ink-soft: #667085;
+	--line: #e4e7ec;
+	--accent: #7c3aed;
+	--accent-ink: #ffffff;
+	--good: #15934f;
+	--warn: #c77700;
+	--bad: #d03a3a;
+	--piste-novice: #3aa8f5;
+	--piste-easy: #1f7ae0;
+	--piste-intermediate: #e23a3a;
+	--piste-advanced: #1b1e24;
+	--piste-expert: #1b1e24;
+	--piste-freeride: #e08a00;
+	--piste-unknown: #9ca3af;
+	color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		--surface: #171b22;
+		--surface-2: #212833;
+		--ink: #f1f3f6;
+		--ink-soft: #98a2b3;
+		--line: #2b3340;
+		--accent: #a78bfa;
+		--accent-ink: #14101f;
+		--good: #4cc38a;
+		--warn: #f0a93b;
+		--bad: #f06a6a;
+		--piste-easy: #3d92f2;
+		--piste-advanced: #e8ebf0;
+		--piste-expert: #e8ebf0;
+		--piste-unknown: #6b7280;
+	}
+}
+
+:root[data-theme='dark'] {
+	--surface: #171b22;
+	--surface-2: #212833;
+	--ink: #f1f3f6;
+	--ink-soft: #98a2b3;
+	--line: #2b3340;
+	--accent: #a78bfa;
+	--accent-ink: #14101f;
+	--good: #4cc38a;
+	--warn: #f0a93b;
+	--bad: #f06a6a;
+	--piste-easy: #3d92f2;
+	--piste-advanced: #e8ebf0;
+	--piste-expert: #e8ebf0;
+	--piste-unknown: #6b7280;
+	color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+
+@theme inline {
+	--color-surface: var(--surface);
+	--color-surface-2: var(--surface-2);
+	--color-ink: var(--ink);
+	--color-ink-soft: var(--ink-soft);
+	--color-line: var(--line);
+	--color-accent: var(--accent);
+	--color-accent-ink: var(--accent-ink);
+	--color-good: var(--good);
+	--color-warn: var(--warn);
+	--color-bad: var(--bad);
+	--font-sans:
+		ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+	background: var(--surface);
+	color: var(--ink);
+	font-family: var(--font-sans);
+	-webkit-tap-highlight-color: transparent;
+	-webkit-text-size-adjust: 100%;
+}
+
+button {
+	cursor: pointer;
+	touch-action: manipulation;
+}
+
+.tabular {
+	font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar {
+	scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}

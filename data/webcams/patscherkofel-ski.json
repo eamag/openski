@@ -1,0 +1,17 @@
+[
+	{
+		"id": "patscherkofel-talstation-panomax",
+		"name": "Patscherkofelbahn Talstation",
+		"provider": "panomax",
+		"pageUrl": "https://patscherkofel.panomax.com/talstation",
+		"imageUrl": "https://panodata.panomax.com/cams/4587/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/4587/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 11.426629,
+		"lat": 47.221991,
+		"ele": 1009,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 5,
+		"cors": "none"
+	}
+]

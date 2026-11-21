@@ -1,0 +1,48 @@
+[
+	{
+		"camera": "patscherkofel-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 4587,
+			"resolution": "full",
+			"tile": {
+				"width": 1024,
+				"height": 1728,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 8192,
+				"height": 1728
+			}
+		},
+		"regions": [
+			{
+				"id": "heiligwasserlift",
+				"lift": "Heiligwasserlift",
+				"label": "T-bar loading",
+				"box": [
+					3050,
+					1420,
+					3500,
+					1728
+				],
+				"upscale": 1,
+				"notes": "Bottom station of the T-bar, front left. The gondola boards inside the building under the camera, out of view. 2026-02-14 11:10 frame."
+			},
+			{
+				"id": "ski-school",
+				"lift": null,
+				"label": "Ski school and children’s area",
+				"box": [
+					5300,
+					1150,
+					6600,
+					1728
+				],
+				"upscale": 1,
+				"notes": "Blue arch of the children’s area and the covered meeting point by the building; the busiest place in the picture all day (mean 50 people on 2026-02-14)."
+			}
+		]
+	}
+]

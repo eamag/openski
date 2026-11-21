@@ -1,0 +1,31 @@
+[
+	{
+		"camera": "prato-nevoso-conca-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 11813,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1321,
+				"height": 1400,
+				"rows": 2,
+				"cols": 12
+			},
+			"composite": {
+				"width": 15852,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "blu",
+				"lift": "Blu",
+				"label": "Valley station queue",
+				"box": [160, 1500, 1560, 2040],
+				"upscale": 1,
+				"blur": 4,
+				"notes": "Crowd waiting in front of the Blu chairlift valley station, between the event banners. Placed on the 2026-02-14 11:40 frame. Panomax pixelates people in coarse blocks here: 4 px blur finds 47 where the 2 px default finds 11."
+			}
+		]
+	}
+]

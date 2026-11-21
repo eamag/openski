@@ -1,0 +1,32 @@
+[
+	{
+		"camera": "wildkogel-rettenstein-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 8188,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1302,
+				"height": 1400,
+				"rows": 2,
+				"cols": 12
+			},
+			"composite": {
+				"width": 15624,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "ganzeralm",
+				"lift": "Ganzeralm",
+				"liftOsm": "way/39207822",
+				"label": "Valley station queue",
+				"box": [11600, 2320, 12420, 2640],
+				"upscale": 2,
+				"blur": 2,
+				"notes": "Queue in front of the Ganzeralm chairlift valley station. Placed on the 2026-02-14 11:40 frame. The queue is small in the panorama, hence upscale 2; 2 px blur finds 37 where sharper settings find 11–18."
+			}
+		]
+	}
+]

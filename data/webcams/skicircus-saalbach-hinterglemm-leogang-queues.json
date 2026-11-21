@@ -1,0 +1,61 @@
+[
+	{
+		"camera": "fieberbrunn-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 3976,
+			"resolution": "full",
+			"tile": {
+				"width": 1024,
+				"height": 1728,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 8192,
+				"height": 1728
+			}
+		},
+		"regions": [
+			{
+				"id": "doischberg",
+				"lift": "Doischberg",
+				"label": "Valley station gates",
+				"box": [
+					5450,
+					880,
+					6150,
+					1260
+				],
+				"upscale": 1,
+				"notes": "Queue lanes between the nets right of the small hut left of the F1 Streuböden building (a Doischberg cabin is parked beside it). Checked on the 2026-02-14 09:30 and 11:10 frames."
+			},
+			{
+				"id": "streuboeden-i",
+				"lift": "Streuböden I",
+				"label": "Valley station entrance",
+				"box": [
+					6550,
+					950,
+					7450,
+					1320
+				],
+				"upscale": 1,
+				"notes": "Snow in front of the F1 Streuböden entrance and the ramp up to it. 2026-02-14 09:30 frame."
+			},
+			{
+				"id": "ticket-office",
+				"lift": null,
+				"label": "Ticket office",
+				"box": [
+					7450,
+					1050,
+					8192,
+					1400
+				],
+				"upscale": 1,
+				"notes": "Ticket windows at the right edge of the panorama; morning queues for passes."
+			}
+		]
+	}
+]

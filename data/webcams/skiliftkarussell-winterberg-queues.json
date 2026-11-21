@@ -1,0 +1,61 @@
+[
+	{
+		"camera": "moeppi-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 11119,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1331,
+				"height": 1400,
+				"rows": 2,
+				"cols": 12
+			},
+			"composite": {
+				"width": 15972,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "buere-herrloh",
+				"lift": "Büre-Herrloh",
+				"label": "Valley station door",
+				"box": [
+					2650,
+					2000,
+					3650,
+					2750
+				],
+				"upscale": 1,
+				"notes": "Queue into the open door of the chairlift 6 station (garage building on the left). Placed on the 2026-02-14 11:40 frame (about 80 people there)."
+			},
+			{
+				"id": "poppenberg",
+				"lift": "Poppenberg 1",
+				"label": "Valley station entrance",
+				"box": [
+					6750,
+					2000,
+					8300,
+					2800
+				],
+				"upscale": 1,
+				"notes": "Crowd in front of the \"Sesselbahn Poppenberg 5\" entrance, reaching down to the camera. 2026-02-14 11:40 frame."
+			},
+			{
+				"id": "suerenberg",
+				"lift": "Sürenberg",
+				"label": "Queue lanes behind the Poppenberg station",
+				"box": [
+					7300,
+					1500,
+					8600,
+					1780
+				],
+				"upscale": 2,
+				"notes": "Lineup along the fences behind the Poppenberg building, under the Sürenberg sign; the loading itself is in the fog to the right. Far away, hence upscale 2."
+			}
+		]
+	}
+]

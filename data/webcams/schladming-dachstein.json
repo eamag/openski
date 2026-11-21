@@ -1,0 +1,17 @@
+[
+	{
+		"id": "kaibling6er-talstation-panomax",
+		"name": "Hauser Kaibling – Kaibling 6er Talstation",
+		"provider": "panomax",
+		"pageUrl": "https://www.panomax.com/4021363",
+		"imageUrl": "https://panodata.panomax.com/cams/8418/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/8418/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 13.775155,
+		"lat": 47.395988,
+		"ele": 1255,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 5,
+		"cors": "none"
+	}
+]

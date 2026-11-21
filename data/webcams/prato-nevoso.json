@@ -1,0 +1,15 @@
+[
+	{
+		"id": "prato-nevoso-conca-panomax",
+		"name": "Prato Nevoso - Conca",
+		"provider": "panomax",
+		"pageUrl": "https://www.panomax.com/4056147",
+		"imageUrl": "https://panodata.panomax.com/cams/11813/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/11813/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 7.781599,
+		"lat": 44.255235,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"cors": "none"
+	}
+]

@@ -1,0 +1,35 @@
+[
+	{
+		"camera": "speikboden-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 8053,
+			"resolution": "full",
+			"tile": {
+				"width": 1024,
+				"height": 1728,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 8192,
+				"height": 1728
+			}
+		},
+		"regions": [
+			{
+				"id": "gondola-gates",
+				"lift": "Speikboden - Monte Spico",
+				"label": "Valley station gates",
+				"box": [
+					4580,
+					1380,
+					5300,
+					1728
+				],
+				"upscale": 1,
+				"notes": "Turnstiles and boarding of the 1 Speikboden gondola, right below the camera. 2026-02-14 09:30 frame."
+			}
+		]
+	}
+]

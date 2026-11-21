@@ -1,0 +1,16 @@
+[
+	{
+		"id": "gerlospass-talstation-panomax",
+		"name": "Gerlospass Talstation",
+		"provider": "panomax",
+		"pageUrl": "https://www.panomax.com/248",
+		"imageUrl": "https://panodata.panomax.com/cams/161/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/161/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 12.11453,
+		"lat": 47.241366,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 21,
+		"cors": "none"
+	}
+]

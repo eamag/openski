@@ -1,0 +1,64 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "taktiski",
+	"compatibility_date": "2026-11-15",
+	"compatibility_flags": ["nodejs_als"],
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "taktiski",
+			"database_id": "1feccdb4-93f0-4645-b063-4b21bad2d9b9",
+			"migrations_dir": "drizzle"
+		}
+	],
+	"routes": [{ "pattern": "openski.eamag.me", "custom_domain": true }],
+	"workers_dev": false,
+	"preview_urls": false,
+	"vars": {
+		"ORIGIN": "https://openski.eamag.me",
+		"OSM_API": "https://master.apis.dev.openstreetmap.org",
+		"OSM_WRITES_ENABLED": "true",
+		"OSM_WRITES_ALLOWLIST": "",
+		"ENABLE_DEV_ROUTES": "0"
+	},
+	"env": {
+		"production": {
+			"name": "openski",
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "openski",
+					"database_id": "9d899132-129c-4fe4-ac01-ae405ce6391d",
+					"migrations_dir": "drizzle"
+				}
+			],
+			"routes": [{ "pattern": "openski.org", "custom_domain": true }],
+			"workers_dev": false,
+			"preview_urls": false,
+			"vars": {
+				"ORIGIN": "https://openski.org",
+				"OSM_API": "https://api.openstreetmap.org",
+				"OSM_WRITES_ENABLED": "true",
+				"OSM_WRITES_ALLOWLIST": "",
+				"ENABLE_DEV_ROUTES": "0"
+			}
+		}
+	},
+	"observability": {
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": true,
+			"head_sampling_rate": 0.1
+		},
+		"redact_query_string": true
+	}
+}

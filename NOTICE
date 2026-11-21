@@ -1,0 +1,97 @@
+openski.org — ski piste map, lift queues and conditions: https://openski.org
+============================================================================
+
+The map is public and needs no account; OpenStreetMap sign-in is only for
+contributors who add webcams, queue regions or map fixes. See README.md.
+
+Source licence: GNU Affero General Public License v3.0 only, SPDX AGPL-3.0-only.
+The full text is in LICENSE. The app source carries the same licence as the AGPL-3.0 YOLO11 model
+it ships (see "People-detection model" below).
+
+This notice credits the data, imagery and model the app uses. Those are NOT relicensed by LICENSE:
+map and POI data stay under ODbL, weather/terrain data under their own open licences, webcam
+pictures under their providers' terms, and the YOLO11 model under AGPL-3.0. Details and refresh
+cadence are in docs/data.md.
+
+
+Piste map, lifts and resort data
+--------------------------------
+
+Data from OpenSkiData / OpenSkiMap.org, (c) OpenStreetMap contributors (ODbL), Skimap.org,
+Who's On First, (c) Mapterhorn.
+
+  - OpenSkiData / OpenSkiMap.org <https://openskidata.org/>, <https://openskimap.org/>:
+    ski areas, runs, lifts and POIs, assembled from OpenStreetMap and Skimap.org. Rebuilt daily;
+    automated downloading is permitted at most once per day. This project's catalogue build
+    caches the daily GeoJSON for at least 24 hours (scripts/build-catalog.ts), matching that rule.
+  - OpenStreetMap data <https://www.openstreetmap.org/copyright>: (c) OpenStreetMap contributors,
+    available under the Open Database License (ODbL) <https://opendatacommons.org/licenses/odbl/>.
+    Per-resort lift, piste and webcam data is queried from Overpass mirrors.
+  - Skimap.org <https://skimap.org/>: resort catalogue entries and official piste-map references.
+    Map pictures are loaded from skimap.org and credited there.
+  - Who's On First <https://whosonfirst.org/>: place data used in the upstream OpenSkiData build.
+  - Mapterhorn <https://mapterhorn.com/>: elevation used by the upstream data build and by this
+    project's terrain. Attribution: <https://mapterhorn.com/attribution/>.
+
+The in-map attribution control shows the data credits; keep it visible in any derivative.
+
+
+Terrain and elevation
+---------------------
+
+  - Mapterhorn <https://mapterhorn.com/> Terrarium-encoded WebP DEM tiles
+    (<https://tiles.mapterhorn.com/>) drive 3D terrain and slope shading in the browser.
+    Underlying DEM sources have their own open licences (for example CC BY 4.0 and public-domain
+    sources); the per-source list and years are at <https://mapterhorn.com/attribution/>.
+  - Offline grid builds (scripts/fetch-dem.ts) use Mapterhorn first and fall back to Tilezen/Joerd
+    Terrarium tiles hosted at elevation-tiles-prod on AWS. Those grids are build artifacts, not
+    a substitute for the upstream attributions above.
+
+
+Basemap tiles and other imagery
+-------------------------------
+
+  - Basemap vector tiles and glyphs: OpenFreeMap <https://openfreemap.org/> ("planet"), derived
+    from OpenStreetMap via the OpenMapTiles schema. Free, no API key; attribution is shown by the
+    map's attribution control. The webcam contributor editor (/contribute/webcam) uses
+    OpenStreetMap raster tiles with "(c) OpenStreetMap" attribution.
+  - Webcam stills and proofs: Panomax <https://www.panomax.com/>, foto-webcam.eu
+    <https://www.foto-webcam.eu/>, Feratel <https://www.feratel.com/>, and resort cameras served
+    through Roundshot, Skaping, webcam-hd.com, the Land Tirol cameras or a direct picture
+    address. Pictures stay on the
+    providers' hosts; each queue count keeps the source picture address and a link to the
+    provider's viewer. No bulk redistribution of provider imagery is performed here; respect
+    each provider's terms and the visible credits.
+  - Resort open/closed status: the resorts' own feeds and Dolomiti Superski's Open Data Hub
+    <https://tourism.api.opendatahub.com/>, cached briefly at the edge. Live operational data;
+    it is not part of the open map dataset.
+
+
+Weather
+-------
+
+  - Open-Meteo <https://open-meteo.com/> Forecast API, data under CC BY 4.0
+    <https://creativecommons.org/licenses/by/4.0/>. The free, keyless endpoint is for
+    non-commercial use (10,000 calls/day) and requires attribution; commercial use or higher
+    volumes need an Open-Meteo subscription (set OPEN_METEO_API_KEY to use the customer endpoint).
+    openski.org credits Open-Meteo on the Now screen wherever forecast data is shown.
+
+
+People-detection model
+----------------------
+
+  - Model: Ultralytics YOLO11n (COCO-pretrained `yolo11n.pt`), by Glenn Jocher and Jing Qiu,
+    Ultralytics, 2024, YOLO11 11.0.0 (weights published with ultralytics v8.3.0)
+    <https://github.com/ultralytics/ultralytics>, <https://docs.ultralytics.com/models/yolo11>.
+    YOLO11 code and trained models are AGPL-3.0
+    <https://github.com/ultralytics/ultralytics/blob/main/LICENSE>.
+  - Shipped file: static/models/yolo11n.onnx, exported from yolo11n.pt with
+    `yolo export model=yolo11n.pt format=onnx imgsz=640 opset=17 simplify=True dynamic=False nms=False`
+    (float32, single output [1, 84, 8400]; 10,741,397 bytes;
+    SHA-256 0f200dfa94e6fb66d8adbeee1626eac067c866d1b7ce3ed132999235589b697a).
+    The export is a derivative of the AGPL-3.0 weights and is shipped under the same terms.
+  - Inference runtime: onnxruntime-web (Microsoft, MIT) WASM; WASM files come from the npm
+    package, not from this repository.
+
+If you redistribute the app, keep this notice with it and comply with the data and provider terms
+above in addition to the AGPL-3.0 source licence in LICENSE.

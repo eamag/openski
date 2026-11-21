@@ -1,0 +1,436 @@
+[
+	{
+		"camera": "tiefenbach-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 195,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1341,
+				"height": 1400,
+				"rows": 2,
+				"cols": 13
+			},
+			"composite": {
+				"width": 16095,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "tiefenbachbahn",
+				"lift": "Tiefenbachbahn",
+				"label": "Valley station gates",
+				"box": [
+					11150,
+					1750,
+					11650,
+					2050
+				],
+				"upscale": 2,
+				"notes": "Covers the 8EUB Tiefenbachbahn gondola valley terminal turnstile gate and outdoor snow staging queue area. 2x upscale is recommended for person detection due to distance."
+			},
+			{
+				"id": "seiterkar",
+				"lift": "Seiterkar",
+				"label": "Chairlift gates",
+				"box": [
+					11950,
+					1850,
+					12350,
+					2080
+				],
+				"upscale": 2,
+				"notes": "Covers the 6SK Seiterkar chairlift boarding gate and queue maze. Straddles the boundary between tile columns 8 and 9."
+			}
+		]
+	},
+	{
+		"camera": "rettenbach-gletscher-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 196,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1359,
+				"height": 1400,
+				"rows": 2,
+				"cols": 15
+			},
+			"composite": {
+				"width": 19030,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "gletscherexpress",
+				"lift": "Gletscherexpress",
+				"label": "Rettenbach valley station",
+				"box": [
+					9900,
+					2020,
+					10350,
+					2260
+				],
+				"upscale": 2,
+				"notes": "Covers the 8EUB Gletscherexpress connecting gondola valley terminal and the queue line forming along the snow ramp in the Rettenbach base plaza."
+			},
+			{
+				"id": "schwarze-schneid-i",
+				"lift": "Schwarze Schneid I",
+				"label": "Valley station gates",
+				"box": [
+					17600,
+					1460,
+					18350,
+					1780
+				],
+				"upscale": 2,
+				"notes": "Covers the 8EUB Schwarze Schneid I valley station entrance gates and apron approach across tile columns 12 and 13."
+			},
+			{
+				"id": "gletscherband",
+				"lift": "Gletscherband",
+				"label": "Conveyor entrance",
+				"box": [
+					13150,
+					1850,
+					13750,
+					2150
+				],
+				"upscale": 2,
+				"notes": "Lower entrance of the covered beginner conveyor (the coloured arch at x≈13400). Placed by eye on the 2026-11-16 13:10 frame."
+			},
+			{
+				"id": "piste-entry",
+				"lift": null,
+				"label": "Rettenbach piste entry",
+				"box": [
+					13200,
+					2150,
+					14600,
+					2600
+				],
+				"upscale": 1,
+				"notes": "Snow between the car park and the slope, where people walk on from the cars. 7 people at 13:10 on 2026-11-16."
+			}
+		]
+	},
+	{
+		"camera": "gaislachkogl-mittelstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 6657,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1335,
+				"height": 1400,
+				"rows": 2,
+				"cols": 11
+			},
+			"composite": {
+				"width": 13353,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "gaislachkoglbahn-ii",
+				"lift": "Gaislachkoglbahn II",
+				"label": "Middle station boarding",
+				"box": [
+					1450,
+					250,
+					2250,
+					750
+				],
+				"upscale": 1,
+				"notes": "Covers the 3S Gaislachkoglbahn II middle station terminal boarding portal and outdoor staging deck at Falcon (2,170m). In pre-season (Nov 15), winter lift is closed with 0 skiers."
+			}
+		]
+	},
+	{
+		"camera": "schwarzkogl-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 6666,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1361,
+				"height": 1400,
+				"rows": 2,
+				"cols": 11
+			},
+			"composite": {
+				"width": 13616,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "schwarzkogl",
+				"lift": "Schwarzkogl",
+				"label": "Chairlift gates",
+				"box": [
+					9750,
+					850,
+					10550,
+					1450
+				],
+				"upscale": 1,
+				"notes": "Covers the 4SK Schwarzkogl chairlift valley station terminal and queue corral directly outside restaurant terrace (2,570m). In pre-season (Nov 15), lift is closed with 0 skiers."
+			}
+		]
+	},
+	{
+		"camera": "schwarzeschneid-mittelstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 216,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1322,
+				"height": 1400,
+				"rows": 2,
+				"cols": 13
+			},
+			"composite": {
+				"width": 15871,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "access-track",
+				"lift": null,
+				"label": "Schwarze Schneid mid station track",
+				"box": [
+					13900,
+					1600,
+					14700,
+					2800
+				],
+				"upscale": 0.5,
+				"notes": "Fenced track beside the middle station, right below the camera. Boarding itself is indoors. The box starts right of the fence: its black posts read as people."
+			}
+		]
+	},
+	{
+		"camera": "hochsolden-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 501,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1395,
+				"height": 1400,
+				"rows": 2,
+				"cols": 13
+			},
+			"composite": {
+				"width": 16743,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "piste",
+				"lift": null,
+				"label": "Hochsölden piste",
+				"box": [
+					3800,
+					1250,
+					5000,
+					2450
+				],
+				"upscale": 0.5,
+				"notes": "Piste passing under the Rotkogl middle station, next to the camera. The Rotkogl valley station is in view too but people there are under 10 px. No snow here on 2026-11-16, so unchecked with people."
+			}
+		]
+	},
+	{
+		"camera": "tiefenbachkogl-felssteg-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 6660,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1337,
+				"height": 1400,
+				"rows": 2,
+				"cols": 14
+			},
+			"composite": {
+				"width": 17388,
+				"height": 2800
+			}
+		},
+		"regions": [
+			{
+				"id": "top-station",
+				"lift": null,
+				"label": "Tiefenbachbahn top station",
+				"box": [
+					7400,
+					1450,
+					8500,
+					2250
+				],
+				"upscale": 1,
+				"notes": "Exit apron of the Tiefenbachbahn top station and the start of the piste. Empty at 13:10 on 2026-11-16."
+			}
+		]
+	},
+	{
+		"camera": "soelden-ort-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 5572,
+			"resolution": "h2800",
+			"tile": {
+				"width": 1330,
+				"height": 1400,
+				"rows": 2,
+				"cols": 11
+			},
+			"composite": {
+				"width": 13305,
+				"height": 2800
+			}
+		},
+		"skip": "Looks down on the village from 700 m and more: people are under 5 px tall.",
+		"regions": []
+	},
+	{
+		"camera": "giggijoch-feratel",
+		"source": {
+			"kind": "still",
+			"width": 3840,
+			"height": 2160,
+			"rotates": true
+		},
+		"regions": [
+			{
+				"id": "view",
+				"lift": null,
+				"label": "Giggijoch",
+				"box": [
+					0,
+					0,
+					3840,
+					2160
+				],
+				"upscale": 0.5,
+				"notes": "The camera turns between pictures, so the whole frame is counted, whatever it shows."
+			}
+		]
+	},
+	{
+		"camera": "gaislachkogl-feratel",
+		"source": {
+			"kind": "still",
+			"width": 3840,
+			"height": 2160,
+			"rotates": true
+		},
+		"regions": [
+			{
+				"id": "view",
+				"lift": null,
+				"label": "Gaislachkogl summit",
+				"box": [
+					0,
+					0,
+					3840,
+					2160
+				],
+				"upscale": 0.5,
+				"notes": "Turning camera: whole frame."
+			}
+		]
+	},
+	{
+		"camera": "seekogl-feratel",
+		"source": {
+			"kind": "still",
+			"width": 3840,
+			"height": 2160,
+			"rotates": true
+		},
+		"regions": [
+			{
+				"id": "view",
+				"lift": null,
+				"label": "Seekogl",
+				"box": [
+					0,
+					0,
+					3840,
+					2160
+				],
+				"upscale": 0.5,
+				"notes": "Turning camera: whole frame."
+			}
+		]
+	},
+	{
+		"camera": "schwarze-schneid-feratel",
+		"source": {
+			"kind": "still",
+			"width": 3840,
+			"height": 2160,
+			"rotates": true
+		},
+		"regions": [
+			{
+				"id": "view",
+				"lift": null,
+				"label": "Schwarze Schneid mid station",
+				"box": [
+					0,
+					0,
+					3840,
+					2160
+				],
+				"upscale": 0.5,
+				"notes": "Turning camera: whole frame."
+			}
+		]
+	},
+	{
+		"camera": "gruenwald-giggijoch-talabfahrt",
+		"source": {
+			"kind": "still",
+			"width": 1280,
+			"height": 960,
+			"rotates": false
+		},
+		"regions": [
+			{
+				"id": "valley-run",
+				"lift": null,
+				"label": "Giggijoch valley run",
+				"box": [
+					300,
+					400,
+					1100,
+					700
+				],
+				"upscale": 2,
+				"notes": "Pistes 21/22 above the hotel. Grass on 2026-11-16, so unchecked with people."
+			}
+		]
+	},
+	{
+		"camera": "gruenwald-soelden-ort",
+		"source": {
+			"kind": "still",
+			"width": 1280,
+			"height": 960,
+			"rotates": false
+		},
+		"skip": "Village and mountain view from across the valley: people cannot be made out.",
+		"regions": []
+	}
+]

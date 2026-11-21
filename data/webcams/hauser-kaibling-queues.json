@@ -1,0 +1,36 @@
+[
+	{
+		"camera": "kaibling6er-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 8418,
+			"resolution": "full",
+			"tile": {
+				"width": 1024,
+				"height": 1728,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 8192,
+				"height": 1728
+			}
+		},
+		"regions": [
+			{
+				"id": "kaibling-6er",
+				"lift": "Kaibling 6er",
+				"label": "Loading gates",
+				"box": [
+					6650,
+					1300,
+					7500,
+					1640
+				],
+				"upscale": 1,
+				"notes": "Gates and loading carpet under the station roof. The corral behind the gates is hidden by the roof edge in front of the camera, so a long queue shows as a full gate area only. 2026-02-14 12:45 frame. Panomax pixelates people here in coarse blocks: blur 6 finds 8 of about 12 at the gates (2: 0, 4: 7, 8: 4).",
+				"blur": 6
+			}
+		]
+	}
+]

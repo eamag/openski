@@ -1,0 +1,48 @@
+node_modules
+
+# Output
+.wrangler
+/.svelte-kit
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local scratch work (venvs, logs, screenshots, experiments)
+/scratch/
+
+# Env and local secrets (never commit credentials)
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+# Model weights used to export static/models/yolo11n.onnx
+/yolo11*.pt
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Pipeline caches and per-resort inputs (Sölden's are kept as a sample)
+/data/cache/
+/data/dem/*/
+!/data/dem/soelden/
+/data/raw/*
+!/data/raw/soelden-osm.json
+!/data/raw/dem-tiles/
+/data/raw/dem-tiles/**
+!/data/raw/dem-tiles/**/
+!/data/raw/dem-tiles/12/217[1-3]/144[0-2].webp
+!/data/raw/dem-tiles/9/27[12]/179.webp
+!/data/raw/dem-tiles/9/27[12]/180.webp
+
+# Local D1 / Miniflare databases
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Local tool config and build logs
+/.claude/
+/data/build-log.jsonl

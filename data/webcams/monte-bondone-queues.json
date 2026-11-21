@@ -1,0 +1,35 @@
+[
+	{
+		"camera": "monte-bondone-vason-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 1653,
+			"resolution": "full",
+			"tile": {
+				"width": 1960,
+				"height": 2048,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 15680,
+				"height": 2048
+			}
+		},
+		"regions": [
+			{
+				"id": "palon",
+				"lift": "Palon",
+				"label": "Chairlift gates",
+				"box": [
+					2700,
+					1250,
+					3700,
+					1480
+				],
+				"upscale": 1,
+				"notes": "Front of the Palon chairlift valley station at Vason. Placed on the 2026-02-21 11:30 frame."
+			}
+		]
+	}
+]

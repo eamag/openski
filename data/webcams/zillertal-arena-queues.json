@@ -1,0 +1,48 @@
+[
+	{
+		"camera": "gerlospass-talstation-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 161,
+			"resolution": "full",
+			"tile": {
+				"width": 1963,
+				"height": 2048,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 15704,
+				"height": 2048
+			}
+		},
+		"regions": [
+			{
+				"id": "sonnwendkopfbahn",
+				"lift": "Sonnwendkopfbahn",
+				"label": "Gondola valley station",
+				"box": [
+					9600,
+					1250,
+					10700,
+					1650
+				],
+				"upscale": 1,
+				"notes": "Front of the gondola station (left building, a cabin shows inside). Placed on the 2026-02-21 10:50 frame."
+			},
+			{
+				"id": "plattenkogel-x-press",
+				"lift": "Plattenkogel X-Press I",
+				"label": "Chairlift gates",
+				"box": [
+					11150,
+					1200,
+					12000,
+					1520
+				],
+				"upscale": 1,
+				"notes": "Gates under the Plattenkogelexpress roof and the barrier in front of them. 2026-02-21 10:50 frame."
+			}
+		]
+	}
+]

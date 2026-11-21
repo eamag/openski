@@ -1,0 +1,17 @@
+[
+	{
+		"id": "moeppi-panomax",
+		"name": "Skiliftkarussell Winterberg – Möppi",
+		"provider": "panomax",
+		"pageUrl": "https://winterberg.panomax.com/moeppi",
+		"imageUrl": "https://panodata.panomax.com/cams/11119/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/11119/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 8.512488,
+		"lat": 51.196934,
+		"ele": 645,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 10,
+		"cors": "none"
+	}
+]

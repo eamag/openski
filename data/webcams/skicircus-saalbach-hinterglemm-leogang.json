@@ -1,0 +1,17 @@
+[
+	{
+		"id": "fieberbrunn-talstation-panomax",
+		"name": "Fieberbrunn Streuböden Talstation",
+		"provider": "panomax",
+		"pageUrl": "https://fieberbrunn.panomax.com/streuboden",
+		"imageUrl": "https://panodata.panomax.com/cams/3976/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/3976/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 12.551055,
+		"lat": 47.467133,
+		"ele": 836,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 10,
+		"cors": "none"
+	}
+]

@@ -1,0 +1,17 @@
+[
+	{
+		"id": "speikboden-talstation-panomax",
+		"name": "Speikboden Talstation",
+		"provider": "panomax",
+		"pageUrl": "https://speikboden.panomax.com/talstation",
+		"imageUrl": "https://panodata.panomax.com/cams/8053/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/8053/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 11.938105,
+		"lat": 46.932743,
+		"ele": 950,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"updateIntervalMin": 5,
+		"cors": "none"
+	}
+]

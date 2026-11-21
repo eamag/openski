@@ -1,0 +1,15 @@
+[
+	{
+		"id": "wildkogel-rettenstein-panomax",
+		"name": "Wildkogel-Arena, Skihütte Rettenstein",
+		"provider": "panomax",
+		"pageUrl": "https://wildkogel-arena.panomax.com/rettenstein",
+		"imageUrl": "https://panodata.panomax.com/cams/8188/recent_default.jpg",
+		"archiveUrlPattern": "https://panodata.panomax.com/cams/8188/{yyyy}/{mm}/{dd}/{hh}-{mi}-00_default.jpg",
+		"lon": 12.279739,
+		"lat": 47.288884,
+		"positionSource": "provider metadata",
+		"panorama": true,
+		"cors": "none"
+	}
+]

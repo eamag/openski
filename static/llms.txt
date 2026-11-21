@@ -1,0 +1,33 @@
+# openski.org
+
+> Free ski piste maps for about 3,900 ski areas worldwide from OpenStreetMap, with hour-by-hour piste
+> conditions and routes for skis and snowboards everywhere, live lift status at about 180 resorts, and lift
+> queues counted from webcams at a few. No account, no install; download a resort to use it offline.
+
+openski.org is built on OpenStreetMap and OpenSkiMap data. Mappers can fix lifts and pistes from the app;
+their changes go to OpenStreetMap under their own account.
+
+## Pages
+
+- [Ski areas](https://openski.org/resorts): search every ski area by name
+- Resort map: `https://openski.org/<resort-id>`, e.g. [Sölden](https://openski.org/soelden)
+- Conditions and lift queues now: `https://openski.org/<resort-id>/now`
+- Route planner: `https://openski.org/<resort-id>/route`
+- Ski area facts (piste km by colour, lifts, heights, piste maps): `https://openski.org/<resort-id>/about`
+- Link to one piste or lift on the map: `https://openski.org/<resort-id>?piste=<id>` or `?lift=<id>`
+- All resort pages: [sitemap](https://openski.org/sitemap.xml)
+
+## What the numbers mean
+
+- Piste conditions are estimates (0 = poor, 100 = great) from the Open-Meteo forecast, the sun and the
+  terrain; they do not know what was groomed.
+- Lift status comes from each resort's live status feed, credited on screen; lifts the feed does not name
+  are shown as unknown.
+- Queue counts are people counted on the resort's public webcams in the browser; each count links to the
+  picture it was made from.
+
+## Data and licences
+
+- Map data: © OpenStreetMap contributors (ODbL), via OpenSkiMap
+- Weather: Open-Meteo (CC BY 4.0)
+- Webcams, lift status and piste maps belong to their providers and are linked wherever they show

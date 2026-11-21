@@ -1,0 +1,35 @@
+[
+	{
+		"camera": "sella-nevea-gilberti-panomax",
+		"source": {
+			"kind": "panomax",
+			"panomaxId": 1984,
+			"resolution": "full",
+			"tile": {
+				"width": 1344,
+				"height": 2048,
+				"rows": 1,
+				"cols": 8
+			},
+			"composite": {
+				"width": 10752,
+				"height": 2048
+			}
+		},
+		"regions": [
+			{
+				"id": "funifor-prevala",
+				"lift": "102 - Funifor Prevala",
+				"label": "Valley station queue",
+				"box": [
+					3300,
+					1500,
+					5800,
+					2048
+				],
+				"upscale": 1,
+				"notes": "The queue snakes along the fence from the bottom edge of the panorama up to the entrance of the Leitner station by Rifugio Gilberti. Placed on the 2026-02-21 10:20 frame."
+			}
+		]
+	}
+]
