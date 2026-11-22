@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { MediaQuery } from 'svelte/reactivity';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
 	import { t } from '#lib/i18n/index.ts';
 	import { app } from '#lib/state/app.svelte.ts';
 	import { location } from '#lib/state/location.svelte.ts';
@@ -16,38 +17,30 @@
 	const isLocationUnavailable = $derived(
 		location.status === 'denied' || location.status === 'unavailable'
 	);
-	const resortName = $derived(app.resort?.data.name ?? resortId);
 	const wide = new MediaQuery('min-width: 768px');
 	const CONTROLS_BOTTOM_MARGIN_PX = 16;
 	const controlsBottomOffsetPx = $derived(
 		(wide.current ? 0 : app.sheetHeight) + CONTROLS_BOTTOM_MARGIN_PX
 	);
+	const BELOW_RESORT_CHIP_REM = 3.5;
+	const BELOW_MAP_SEARCH_BAR_REM = 7;
+	const controlsTopLimit = $derived(
+		`calc(env(safe-area-inset-top) + ${page.route.id === '/(app)/[resort]' ? BELOW_MAP_SEARCH_BAR_REM : BELOW_RESORT_CHIP_REM}rem)`
+	);
 </script>
 
 <div
-	class="pointer-events-none absolute right-3 z-10 flex flex-col gap-2 transition-[bottom] duration-200"
+	class="pointer-events-none absolute right-3 z-10 flex flex-col-reverse flex-wrap-reverse content-start gap-2 transition-[bottom] duration-200"
+	style:top={controlsTopLimit}
 	style:bottom="{controlsBottomOffsetPx}px"
 >
-	<a
-		href={resolve('/(app)/resorts')}
-		class="pointer-events-auto flex h-9 items-center gap-1.5 self-end rounded-full border border-line bg-surface px-3 text-xs font-medium text-ink shadow-[0_2px_10px_rgb(0_0_0/0.14)]"
-		aria-label={t.map.chooseDifferentResort}
-		data-sveltekit-reset="false"
+	<button
+		class="fab {app.follow && location.fix ? 'on' : ''} {isLocationUnavailable ? 'off' : ''}"
+		onclick={locate}
+		aria-label={isLocationUnavailable ? t.map.locationUnavailable : t.map.showLocation}
 	>
-		<Icon name="map" size={13} />
-		<span class="max-w-[120px] truncate">{resortName}</span>
-		<Icon name="chevron" size={12} />
-	</a>
-	<button class="fab" onclick={() => settings.show()} aria-label={t.map.settings}>
-		<Icon name="settings" />
+		<Icon name="locate" />
 	</button>
-	<a
-		class="fab"
-		href={resolve('/(app)/[resort]/questions', { resort: resortId })}
-		aria-label={t.map.helpAria}
-	>
-		<Icon name="help" />
-	</a>
 	<button
 		class="fab {app.terrain ? 'on' : ''}"
 		onclick={() => (app.terrain = !app.terrain)}
@@ -56,12 +49,15 @@
 	>
 		<Icon name="mountain" />
 	</button>
-	<button
-		class="fab {app.follow && location.fix ? 'on' : ''} {isLocationUnavailable ? 'off' : ''}"
-		onclick={locate}
-		aria-label={isLocationUnavailable ? t.map.locationUnavailable : t.map.showLocation}
+	<a
+		class="fab"
+		href={resolve('/(app)/[resort]/questions', { resort: resortId })}
+		aria-label={t.map.helpAria}
 	>
-		<Icon name="locate" />
+		<Icon name="help" />
+	</a>
+	<button class="fab" onclick={() => settings.show()} aria-label={t.map.settings}>
+		<Icon name="settings" />
 	</button>
 </div>
 

@@ -52,7 +52,7 @@
 </script>
 
 <div
-	class="pointer-events-auto absolute inset-x-3 top-[calc(env(safe-area-inset-top)+0.75rem)] z-20 mx-auto max-w-xl md:mx-0 md:max-w-md"
+	class="pointer-events-auto absolute inset-x-3 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 mx-auto max-w-xl md:mx-0 md:max-w-md"
 >
 	<label
 		class="flex h-12 items-center gap-2.5 rounded-full border border-line bg-surface px-4 shadow-[0_2px_12px_rgb(0_0_0/0.12)]"
@@ -85,7 +85,9 @@
 		</button>
 	</label>
 	{#if menu && !results.length}
-		<div class="mt-2 rounded-3xl border border-line bg-surface p-4 shadow-lg">
+		<div
+			class="mt-2 max-h-[calc(100dvh-env(safe-area-inset-top)-env(safe-area-inset-bottom)-11.5rem)] overflow-y-auto overscroll-contain rounded-3xl border border-line bg-surface p-4 shadow-lg"
+		>
 			<MapOptions />
 			{#if install.possible}
 				<hr class="my-3 border-line" />
@@ -165,7 +167,7 @@
 
 {#if install.due && app.resort && !app.selection && !focused && !menu && !webcams.selected}
 	<div
-		class="pointer-events-auto absolute inset-x-3 top-[calc(env(safe-area-inset-top)+4.75rem)] z-10 mx-auto max-w-xl md:mx-0 md:max-w-md"
+		class="pointer-events-auto absolute inset-x-3 top-[calc(env(safe-area-inset-top)+7.25rem)] z-10 mx-auto max-w-xl md:mx-0 md:max-w-md"
 	>
 		<InstallPrompt />
 	</div>

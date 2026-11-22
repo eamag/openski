@@ -124,6 +124,10 @@
 		app.picking = null;
 	}
 
+	const resortName = $derived(
+		(app.resort?.id === resortId ? app.resort.data.name : catalogEntry?.name) ?? resortId
+	);
+
 	const pageTitle = $derived(
 		catalogEntry ? resortTitle(catalogEntry, resortPageFromRouteId(page.route.id)) : null
 	);
@@ -160,6 +164,23 @@
 		<main class="relative min-h-0 flex-1 overflow-hidden">
 			<ResortMap {onpick} />
 			<MapControls {resortId} />
+			{#if !app.picking}
+				<div
+					class="pointer-events-none absolute inset-x-3 top-[calc(env(safe-area-inset-top)+0.75rem)] z-20 mx-auto flex max-w-xl md:mx-0 md:max-w-md"
+				>
+					<a
+						href={resolve('/(app)/resorts')}
+						class="pointer-events-auto flex h-9 min-w-0 items-center gap-1.5 rounded-full border border-line bg-surface px-3 text-sm font-semibold text-ink shadow-[0_2px_10px_rgb(0_0_0/0.14)]"
+						aria-label="{resortName}: {t.map.chooseDifferentResort}"
+						title={resortName}
+						data-sveltekit-reset="false"
+					>
+						<Icon name="map" size={14} />
+						<span class="min-w-0 truncate">{resortName}</span>
+						<span class="shrink-0 rotate-90 text-ink-soft"><Icon name="chevron" size={13} /></span>
+					</a>
+				</div>
+			{/if}
 			{#if app.picking}
 				<div
 					class="absolute inset-x-4 top-[calc(env(safe-area-inset-top)+1rem)] z-30 flex items-center justify-between gap-3 rounded-2xl bg-ink px-4 py-3 text-sm font-medium text-surface shadow-lg"
