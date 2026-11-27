@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import type { LngLat } from '#lib/geo.ts';
-	import ResortMap from '#lib/map/ResortMap.svelte';
+	import type ResortMapComponent from '#lib/map/ResortMap.svelte';
 	import { resortPageFromRouteId, resortTitle, type TitledResort } from '#lib/page-titles.ts';
 	import { t } from '#lib/i18n/index.ts';
 	import { app } from '#lib/state/app.svelte.ts';
@@ -31,6 +31,7 @@
 	const resortId = $derived(page.params.resort ?? '');
 	let lastInitResortId = $state<string | null>(null);
 	let catalogEntry = $state<TitledResort | null>(null);
+	let MapComponent = $state.raw<typeof ResortMapComponent | null>(null);
 
 	$effect(() => {
 		const id = resortId;
@@ -55,6 +56,11 @@
 	});
 
 	onMount(() => {
+		const frameId = requestAnimationFrame(() => {
+			void import('#lib/map/ResortMap.svelte').then((module) => {
+				MapComponent = module.default;
+			});
+		});
 		app.restoreOptions();
 		void route.restorePrefs();
 		const isRunningSimulation = page.url.searchParams.has('sim');
@@ -64,6 +70,7 @@
 				if (permissionStatus.state === 'granted' && !isRunningSimulation) location.start();
 			})
 			.catch(() => undefined);
+		return () => cancelAnimationFrame(frameId);
 	});
 
 	$effect(() => {
@@ -82,7 +89,11 @@
 		untrack(() => {
 			void progress.init(resort);
 			void tracking.checkDraft();
-			void conditions.load();
+			if (page.route.id === '/(app)/[resort]' && typeof requestIdleCallback === 'function') {
+				requestIdleCallback(() => void conditions.load(), { timeout: 1500 });
+			} else {
+				void conditions.load();
+			}
 			void queues.init();
 			void status.load();
 			const simulationSpeedParam = page.url.searchParams.get('sim');
@@ -162,7 +173,9 @@
 {:else}
 	<div class="fixed inset-0 flex flex-col bg-surface" style={pisteCssStyle}>
 		<main class="relative min-h-0 flex-1 overflow-hidden">
-			<ResortMap {onpick} />
+			{#if MapComponent}
+				<MapComponent {onpick} />
+			{/if}
 			<MapControls {resortId} />
 			{#if !app.picking}
 				<div

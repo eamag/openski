@@ -10,6 +10,7 @@ const runesOutsideDependencies = ({ filename }: { filename: string }) =>
 
 export default defineConfig({
 	server: { watch: { ignored: UNWATCHED_DIRS } },
+	build: { sourcemap: true },
 	plugins: [
 		tailwindcss(),
 		sveltekit({

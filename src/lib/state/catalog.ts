@@ -4,20 +4,30 @@ import type { Catalog, CatalogResort } from '#lib/resort/catalog.ts';
 let cache: CatalogResort[] | null = null;
 let pending: Promise<CatalogResort[] | null> | null = null;
 
-export function loadCatalog(): Promise<CatalogResort[] | null> {
+// The catalog is ~450 KiB compressed. On the resort map it is only needed for the resort
+// dots and chip metadata, so its download waits for an idle moment instead of competing
+// with the chunks, tiles and resort data that gate the first paint. Callers that need it
+// to make a decision (the home page's locate flow) pass `immediate`.
+export function loadCatalog(immediate = false): Promise<CatalogResort[] | null> {
 	if (cache) return Promise.resolve(cache);
 	if (!pending) {
-		pending = fetch(asset('data/resorts.json' as never))
-			.then(async (res) => {
-				if (!res.ok) throw new Error(`The ski area list answered ${res.status}`);
-				const catalog = (await res.json()) as Catalog;
-				cache = catalog.resorts;
-				return cache;
-			})
-			.catch(() => {
-				pending = null;
-				return null;
-			});
+		pending = new Promise((resolve) => {
+			const fetchCatalog = () => {
+				fetch(asset('data/resorts.json' as never))
+					.then(async (res) => {
+						if (!res.ok) throw new Error(`The ski area list answered ${res.status}`);
+						const catalog = (await res.json()) as Catalog;
+						cache = catalog.resorts;
+						resolve(cache);
+					})
+					.catch(() => {
+						pending = null;
+						resolve(null);
+					});
+			};
+			if (immediate || typeof requestIdleCallback !== 'function') return fetchCatalog();
+			requestIdleCallback(fetchCatalog, { timeout: 3000 });
+		});
 	}
 	return pending;
 }

@@ -16,6 +16,12 @@
 			"migrations_dir": "drizzle"
 		}
 	],
+	"analytics_engine_datasets": [
+		{
+			"binding": "ANALYTICS",
+			"dataset": "openski_events_dev"
+		}
+	],
 	"routes": [{ "pattern": "openski.eamag.me", "custom_domain": true }],
 	"workers_dev": false,
 	"preview_urls": false,
@@ -35,6 +41,12 @@
 					"database_name": "openski",
 					"database_id": "9d899132-129c-4fe4-ac01-ae405ce6391d",
 					"migrations_dir": "drizzle"
+				}
+			],
+			"analytics_engine_datasets": [
+				{
+					"binding": "ANALYTICS",
+					"dataset": "openski_events"
 				}
 			],
 			"routes": [{ "pattern": "openski.org", "custom_domain": true }],

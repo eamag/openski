@@ -13,6 +13,7 @@
 	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 	import mlcontour from 'maplibre-contour';
 	import { onMount, untrack } from 'svelte';
+	import { MediaQuery } from 'svelte/reactivity';
 	import { goto } from '$app/navigation';
 	import { asset, resolve } from '$app/paths';
 	import { page } from '$app/state';
@@ -43,14 +44,17 @@
 		baseStyle,
 		catalogLayers,
 		CURRENT_HIDE_ZOOM,
+		demSource,
 		DEM_MAXZOOM,
 		DEM_TILES,
+		hillshadeLayer,
 		NEIGHBOUR_ZOOM,
 		neighbourLayers,
 		RESORTS_MAXZOOM,
 		resortLayers
 	} from './style.ts';
 	import { theme as appearance } from '#lib/state/theme.svelte.ts';
+	import { markTimeToMap } from '#lib/analytics.ts';
 	import { ACCENT, DARK, LIGHT, getPisteColors, type MapTheme } from './theme.ts';
 	import { setupSlopes, SLOPE_TILES } from './slope.ts';
 
@@ -59,6 +63,7 @@
 	let container: HTMLDivElement;
 	let map = $state.raw<MapLibre | null>(null);
 	let styleEpoch = $state(0);
+	let firstStyleLoad = true;
 	// Only light/dark needs a new style; piste colours follow the resort's region and are repainted.
 	const baseTheme = $derived<MapTheme>(appearance.dark ? DARK : LIGHT);
 	const theme = $derived<MapTheme>({
@@ -193,6 +198,8 @@
 	}
 
 	const onMapScreen = $derived(page.route.id === '/(app)/[resort]');
+	const wide = new MediaQuery('min-width: 768px');
+	const sheetOffsetPx = $derived(app.sheetHeight ? app.sheetHeight + (wide.current ? 16 : 0) : 0);
 
 	function webcamAt(m: MapLibre, point: { x: number; y: number }) {
 		if (!m.getLayer('webcam')) return undefined;
@@ -236,6 +243,16 @@
 		}
 	}
 
+	function ensureDem(m: MapLibre) {
+		if (!m.getSource('dem')) m.addSource('dem', demSource(demUrl));
+	}
+
+	function ensureHillshade(m: MapLibre) {
+		if (m.getLayer('hillshade')) return;
+		ensureDem(m);
+		m.addLayer(hillshadeLayer(untrack(() => theme)), 'border');
+	}
+
 	function resortBounds(resort: Resort): LngLatBoundsLike {
 		const [w, s, e, n] = resort.data.bbox;
 		return [
@@ -272,22 +289,25 @@
 		m.touchZoomRotate.enable();
 		m.addControl(
 			new AttributionControl({
-				compact: true,
+				compact: false,
 				customAttribution:
 					'<a href="https://openskimap.org/" target="_blank" rel="noopener">OpenSkiMap</a>'
 			}),
 			'bottom-left'
 		);
-		m.once('load', () => {
-			const el = container.querySelector('.maplibregl-ctrl-attrib');
-			el?.classList.remove('maplibregl-compact-show');
-			el?.removeAttribute('open');
-		});
 		m.on('style.load', () => {
 			addImages(
 				m,
 				untrack(() => theme)
 			);
+			if (firstStyleLoad) {
+				firstStyleLoad = false;
+				m.once('idle', () => {
+					if (map === m) ensureHillshade(m);
+				});
+			} else {
+				ensureHillshade(m);
+			}
 			styleEpoch++;
 		});
 		m.on('click', (e) => {
@@ -332,9 +352,7 @@
 	});
 
 	function style(t: MapTheme) {
-		const s = baseStyle(t, contourUrl);
-		(s.sources.dem as { tiles: string[] }).tiles = [demUrl];
-		return s;
+		return baseStyle(t, contourUrl);
 	}
 
 	let firstTheme = true;
@@ -417,6 +435,20 @@
 		coveredOnMap = new Set();
 		scoredOnMap = false;
 		installed = untrack(() => installed) + 1;
+	});
+
+	let mapTimed = false;
+	$effect(() => {
+		const m = map;
+		if (!m || !installed || mapTimed) return;
+		const record = () => {
+			if (mapTimed) return;
+			mapTimed = true;
+			markTimeToMap(performance.now());
+		};
+		if (m.loaded() && !m.isMoving()) record();
+		else m.once('idle', record);
+		return () => void m.off('idle', record);
 	});
 
 	$effect(() => {
@@ -542,6 +574,7 @@
 		const m = map;
 		const on = app.terrain;
 		if (!m || !styleEpoch) return;
+		if (on) ensureDem(m);
 		m.setTerrain(on ? { source: 'dem', exaggeration: 1.25 } : null);
 		m.easeTo({ pitch: on ? TERRAIN_3D_PITCH_DEGREES : TERRAIN_FLAT_PITCH_DEGREES, duration: 600 });
 	});
@@ -773,7 +806,7 @@
 	});
 </script>
 
-<div class="absolute inset-0" class:picking={app.picking} style:--sheet="{app.sheetHeight}px">
+<div class="absolute inset-0" class:picking={app.picking} style:--sheet="{sheetOffsetPx}px">
 	<div bind:this={container} class="size-full"></div>
 </div>
 
@@ -809,7 +842,10 @@
 	}
 	div :global(.maplibregl-ctrl-attrib) {
 		font-size: 10px;
-		background: color-mix(in srgb, var(--surface) 80%, transparent);
+		line-height: 1.3;
+		max-width: min(calc(100vw - 80px), 28rem);
+		border-radius: 8px;
+		background: color-mix(in srgb, var(--surface) 82%, transparent);
 		color: var(--ink-soft);
 	}
 	div :global(.maplibregl-ctrl-attrib a) {

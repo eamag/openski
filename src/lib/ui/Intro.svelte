@@ -1,21 +1,19 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { readStored, writeStored } from '#lib/browser-storage.ts';
 	import { t } from '#lib/i18n/index.ts';
-	import { INTRO_SEEN } from '#lib/state/install.svelte.ts';
+	import { INTRO_SEEN, install } from '#lib/state/install.svelte.ts';
 	import Icon, { type IconName } from './Icon.svelte';
 	import Sheet from './Sheet.svelte';
 
-	let isIntroVisible = $state(false);
-
-	onMount(() => {
-		isIntroVisible = readStored(INTRO_SEEN) !== '1';
-	});
+	// Decided synchronously (the app is client-only) so the sheet mounts in the same
+	// frame as the map controls; a deferred mount visibly shifts them.
+	let isIntroVisible = $state(readStored(INTRO_SEEN) !== '1');
 
 	function dismissIntro() {
 		isIntroVisible = false;
+		install.introSeen = true;
 		writeStored(INTRO_SEEN, '1');
 	}
 

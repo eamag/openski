@@ -1,5 +1,12 @@
 export const home = {
-	allowLocation: 'Allow location to open the ski area you are at',
+	subtitle: 'Free offline piste maps, snow conditions and routes from OpenStreetMap.',
+	useLocation: 'Find ski area near me',
+	chooseFromList: 'Choose a ski area',
+	previewSoelden: 'Explore Sölden',
+	previewSoeldenHint: 'Live lift status, webcam queues & routes',
 	findingNearby: 'Finding the ski area near you…',
-	chooseFromList: 'Choose from a list'
+	opening: 'Opening the map…',
+	locationFailed:
+		'Could not find your location. Allow location access or choose a ski area from the list.',
+	dataBy: 'Map data by'
 };

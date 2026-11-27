@@ -20,6 +20,20 @@
 		folded ? FOLDED_MAX_HEIGHT : tall ? TALL_MAX_HEIGHT : DEFAULT_MAX_HEIGHT
 	);
 
+	function measureHeight(node: HTMLElement) {
+		const sync = () => {
+			height = node.offsetHeight;
+		};
+		sync();
+		const observer = new ResizeObserver(sync);
+		observer.observe(node);
+		return {
+			destroy() {
+				observer.disconnect();
+			}
+		};
+	}
+
 	$effect(() => {
 		if (!heightAware) return;
 		app.sheetHeight = height;
@@ -30,7 +44,7 @@
 </script>
 
 <section
-	bind:clientHeight={height}
+	use:measureHeight
 	class="pointer-events-auto absolute inset-x-0 bottom-0 z-20 mx-auto flex w-full max-w-xl flex-col rounded-t-3xl border-t border-line bg-surface shadow-[0_-8px_30px_rgb(0_0_0/0.12)] transition-[max-height] duration-200 md:bottom-4 md:left-4 md:mx-0 md:max-w-md md:rounded-3xl md:border"
 	style:max-height={currentMaxHeight}
 >

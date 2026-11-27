@@ -1,4 +1,9 @@
-import type { ExpressionSpecification, LayerSpecification, StyleSpecification } from 'maplibre-gl';
+import type {
+	ExpressionSpecification,
+	LayerSpecification,
+	SourceSpecification,
+	StyleSpecification
+} from 'maplibre-gl';
 import type { MapTheme } from './theme.ts';
 
 export const BASEMAP_TILEJSON = 'https://tiles.openfreemap.org/planet';
@@ -66,26 +71,6 @@ export function baseStyle(t: MapTheme, contourTiles: string | null): StyleSpecif
 			paint: {
 				'line-color': t.water,
 				'line-width': ['interpolate', ['linear'], ['zoom'], 11, 0.6, 16, 2]
-			}
-		},
-		{
-			id: 'hillshade',
-			type: 'hillshade',
-			source: 'dem',
-			paint: {
-				'hillshade-shadow-color': t.shade,
-				'hillshade-highlight-color': t.highlight,
-				'hillshade-accent-color': t.shade,
-				'hillshade-exaggeration': [
-					'interpolate',
-					['linear'],
-					['zoom'],
-					9,
-					t.dark ? 0.4 : 0.16,
-					14,
-					t.dark ? 0.55 : 0.28
-				],
-				'hillshade-illumination-direction': 315
 			}
 		},
 		{
@@ -239,19 +224,48 @@ export function baseStyle(t: MapTheme, contourTiles: string | null): StyleSpecif
 		glyphs: GLYPHS,
 		sources: {
 			base: { type: 'vector', url: BASEMAP_TILEJSON },
-			dem: {
-				type: 'raster-dem',
-				tiles: [DEM_TILES],
-				tileSize: 512,
-				encoding: 'terrarium',
-				maxzoom: DEM_MAXZOOM,
-				attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>'
-			},
 			...(contourTiles
 				? { contour: { type: 'vector' as const, tiles: [contourTiles], maxzoom: 14 } }
 				: {})
 		},
 		layers
+	};
+}
+
+// The terrain-elevation source and the hillshade layer are added after the first render
+// (ResortMap.ensureHillshade): their terrarium tiles are ~150 KiB each, and loading them
+// up front delays the first paint of the map.
+export function demSource(tiles: string): SourceSpecification {
+	return {
+		type: 'raster-dem',
+		tiles: [tiles],
+		tileSize: 512,
+		encoding: 'terrarium',
+		maxzoom: DEM_MAXZOOM,
+		attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>'
+	};
+}
+
+export function hillshadeLayer(t: MapTheme): LayerSpecification {
+	return {
+		id: 'hillshade',
+		type: 'hillshade',
+		source: 'dem',
+		paint: {
+			'hillshade-shadow-color': t.shade,
+			'hillshade-highlight-color': t.highlight,
+			'hillshade-accent-color': t.shade,
+			'hillshade-exaggeration': [
+				'interpolate',
+				['linear'],
+				['zoom'],
+				9,
+				t.dark ? 0.4 : 0.16,
+				14,
+				t.dark ? 0.55 : 0.28
+			],
+			'hillshade-illumination-direction': 315
+		}
 	};
 }
 

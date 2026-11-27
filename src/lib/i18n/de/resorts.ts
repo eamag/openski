@@ -16,6 +16,7 @@ export const resorts: Messages['resorts'] = {
 	lastOpened: 'Zuletzt geöffnet',
 	openMap: 'Karte öffnen',
 	allResortsHeading: (count: string) => `Alle Skigebietskarten (${count})`,
+	showMoreResorts: (remaining: string) => `Mehr anzeigen (noch ${remaining})`,
 	liftCount: (count: number) => plural(count, { one: '# Lift', other: '# Lifte' }),
 	pistesKm: (km: number) => `${formatUnit(Math.round(km), 'kilometer')} Pisten`,
 	pisteKmByColourAria: (breakdown: string) => `Pistenkilometer nach Farbe: ${breakdown}`

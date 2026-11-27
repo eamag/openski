@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { MediaQuery } from 'svelte/reactivity';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
@@ -27,39 +28,51 @@
 	const controlsTopLimit = $derived(
 		`calc(env(safe-area-inset-top) + ${page.route.id === '/(app)/[resort]' ? BELOW_MAP_SEARCH_BAR_REM : BELOW_RESORT_CHIP_REM}rem)`
 	);
+
+	// Enable bottom transitions only after the initial layout frame so mounting alongside a
+	// bottom sheet does not animate upward and trigger Cumulative Layout Shift.
+	let animateBottom = $state(false);
+	onMount(() => {
+		const id = requestAnimationFrame(() => (animateBottom = true));
+		return () => cancelAnimationFrame(id);
+	});
 </script>
 
-<div
-	class="pointer-events-none absolute right-3 z-10 flex flex-col-reverse flex-wrap-reverse content-start gap-2 transition-[bottom] duration-200"
-	style:top={controlsTopLimit}
-	style:bottom="{controlsBottomOffsetPx}px"
->
-	<button
-		class="fab {app.follow && location.fix ? 'on' : ''} {isLocationUnavailable ? 'off' : ''}"
-		onclick={locate}
-		aria-label={isLocationUnavailable ? t.map.locationUnavailable : t.map.showLocation}
+{#if app.resort}
+	<div
+		class="pointer-events-none absolute right-3 z-10 flex flex-col-reverse flex-wrap-reverse content-start gap-2 {animateBottom
+			? 'transition-[bottom] duration-200'
+			: ''}"
+		style:top={controlsTopLimit}
+		style:bottom="{controlsBottomOffsetPx}px"
 	>
-		<Icon name="locate" />
-	</button>
-	<button
-		class="fab {app.terrain ? 'on' : ''}"
-		onclick={() => (app.terrain = !app.terrain)}
-		aria-pressed={app.terrain}
-		aria-label={t.map.terrain3d}
-	>
-		<Icon name="mountain" />
-	</button>
-	<a
-		class="fab"
-		href={resolve('/(app)/[resort]/questions', { resort: resortId })}
-		aria-label={t.map.helpAria}
-	>
-		<Icon name="help" />
-	</a>
-	<button class="fab" onclick={() => settings.show()} aria-label={t.map.settings}>
-		<Icon name="settings" />
-	</button>
-</div>
+		<button
+			class="fab {app.follow && location.fix ? 'on' : ''} {isLocationUnavailable ? 'off' : ''}"
+			onclick={locate}
+			aria-label={isLocationUnavailable ? t.map.locationUnavailable : t.map.showLocation}
+		>
+			<Icon name="locate" />
+		</button>
+		<button
+			class="fab {app.terrain ? 'on' : ''}"
+			onclick={() => (app.terrain = !app.terrain)}
+			aria-pressed={app.terrain}
+			aria-label={t.map.terrain3d}
+		>
+			<Icon name="mountain" />
+		</button>
+		<a
+			class="fab"
+			href={resolve('/(app)/[resort]/questions', { resort: resortId })}
+			aria-label={t.map.helpAria}
+		>
+			<Icon name="help" />
+		</a>
+		<button class="fab" onclick={() => settings.show()} aria-label={t.map.settings}>
+			<Icon name="settings" />
+		</button>
+	</div>
+{/if}
 
 <style>
 	.fab {

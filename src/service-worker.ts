@@ -24,6 +24,7 @@ const isDetectorAsset = (path: string) => path.includes('models/') || path.inclu
 const isResortDataFile = (path: string) =>
 	/^\/?data\//.test(path) && !path.endsWith('data/resorts.json');
 const isLinkPreviewImage = (path: string) => /^\/?og(?:-apartment)?\.png$/.test(path);
+const isSourceMap = (path: string) => path.endsWith('.map');
 // For crawlers only; the sitemap alone is ~700 KB and would slow the install.
 const isCrawlerFile = (path: string) => /^\/?(sitemap\.xml|robots\.txt|llms\.txt)$/.test(path);
 
@@ -52,7 +53,11 @@ const SHELL = [
 ]
 	.filter(
 		(p) =>
-			!isDetectorAsset(p) && !isResortDataFile(p) && !isLinkPreviewImage(p) && !isCrawlerFile(p)
+			!isDetectorAsset(p) &&
+			!isResortDataFile(p) &&
+			!isLinkPreviewImage(p) &&
+			!isSourceMap(p) &&
+			!isCrawlerFile(p)
 	)
 	.map((p) => (p.startsWith('/') ? p : `/${p}`));
 

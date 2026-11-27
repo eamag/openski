@@ -11,6 +11,8 @@
 	import Icon from '#lib/ui/Icon.svelte';
 
 	const MAX_SEARCH_RESULTS = 50;
+	const INITIAL_RESORT_COUNT = 60;
+	const RESORT_PAGE_SIZE = 100;
 
 	function breakdown(resort: CatalogResort) {
 		const colors = getCatalogPisteColours(resort.country, appearance.dark);
@@ -31,9 +33,10 @@
 	let failed = $state(false);
 	let resorts = $state.raw<SearchableResort[]>([]);
 	let lastId = $state<string | null>(null);
+	let visibleCount = $state(INITIAL_RESORT_COUNT);
 
 	function normalize(s: string): string {
-		return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+		return s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').toLowerCase().trim();
 	}
 
 	onMount(async () => {
@@ -45,17 +48,18 @@
 	});
 
 	const builtResorts = $derived(resorts.filter((r) => r.built));
+	const visibleResorts = $derived(builtResorts.slice(0, visibleCount));
 	const lastResort = $derived(resorts.find((r) => r.id === lastId && r.built) ?? null);
 
 	const searchResults = $derived.by(() => {
 		const q = normalize(query);
 		if (!q) return [];
 		return resorts
-			.filter((r) => r.searchKey.includes(q))
+			.filter((r) => r.searchKey.includes(q) || r.id.includes(q))
 			.sort((a, b) => {
 				if (a.built !== b.built) return a.built ? -1 : 1;
-				const aStarts = a.searchKey.startsWith(q);
-				const bStarts = b.searchKey.startsWith(q);
+				const aStarts = a.searchKey.startsWith(q) || a.id.startsWith(q);
+				const bStarts = b.searchKey.startsWith(q) || b.id.startsWith(q);
 				if (aStarts !== bStarts) return aStarts ? -1 : 1;
 				return b.km - a.km;
 			})
@@ -265,10 +269,19 @@
 						{t.resorts.allResortsHeading(formatNumber(builtResorts.length))}
 					</h2>
 					<ul class="flex flex-col gap-2">
-						{#each builtResorts as r (r.id)}
+						{#each visibleResorts as r (r.id)}
 							<li>{@render resortLink(r)}</li>
 						{/each}
 					</ul>
+					{#if visibleCount < builtResorts.length}
+						<button
+							type="button"
+							class="mt-3 flex h-11 w-full items-center justify-center rounded-2xl border border-line bg-surface-2 text-sm font-medium text-ink"
+							onclick={() => (visibleCount += RESORT_PAGE_SIZE)}
+						>
+							{t.resorts.showMoreResorts(formatNumber(builtResorts.length - visibleCount))}
+						</button>
+					{/if}
 				</section>
 			</div>
 		{/if}

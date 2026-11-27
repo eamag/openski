@@ -14,6 +14,7 @@ export const resorts = {
 	lastOpened: 'Last opened',
 	openMap: 'Open map',
 	allResortsHeading: (count: string) => `All ski area maps (${count})`,
+	showMoreResorts: (remaining: string) => `Show more (${remaining} left)`,
 	liftCount: (count: number) => plural(count, { one: '# lift', other: '# lifts' }),
 	pistesKm: (km: number) => `${formatUnit(Math.round(km), 'kilometer')} pistes`,
 	pisteKmByColourAria: (breakdown: string) => `Piste kilometres by colour: ${breakdown}`

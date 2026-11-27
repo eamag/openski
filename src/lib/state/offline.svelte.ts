@@ -1,3 +1,4 @@
+import { trackEvent } from '#lib/analytics.ts';
 import { readStoredJson, writeStored } from '#lib/browser-storage.ts';
 import { t } from '#lib/i18n/index.ts';
 import { downloadOffline, forgetOffline, type DownloadProgress } from '#lib/offline.ts';
@@ -108,6 +109,7 @@ class OfflineState {
 		if (this.saved[id]) return;
 		this.saved = { ...this.saved, [id]: true };
 		this.persist();
+		trackEvent('offline_saved', { resort: id });
 	}
 
 	private persist(): void {

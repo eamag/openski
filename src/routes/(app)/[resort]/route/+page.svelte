@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatDistance, formatDuration, formatList, formatMeters, t } from '#lib/i18n/index.ts';
+	import { trackRouteCalculated } from '#lib/analytics.ts';
 	import { liftIcon } from '#lib/format.ts';
 	import {
 		placeKey,
@@ -42,6 +43,33 @@
 
 	$effect(() => {
 		if (route.from.kind === 'me' || route.to?.kind === 'me') location.start();
+	});
+
+	$effect(() => {
+		const currentResort = resort;
+		const calculated = result;
+		const toPlace = route.to;
+		if (!currentResort || !calculated || !toPlace) return;
+		const routeKey = [
+			currentResort.id,
+			placeKey(route.from),
+			placeKey(toPlace),
+			route.prefs.maxDifficulty,
+			route.prefs.avoidDragLifts,
+			route.prefs.avoidFlats,
+			route.prefs.preferGoodSnow,
+			route.ignoreClosures
+		].join(':');
+		trackRouteCalculated({
+			resort: currentResort.id,
+			key: routeKey,
+			fromKind: route.from.kind,
+			toKind: toPlace.kind,
+			maxDifficulty: route.prefs.maxDifficulty,
+			durationS: calculated.time,
+			lengthM: calculated.length,
+			steps: calculated.steps.length
+		});
 	});
 
 	function focusOnMount(element: HTMLInputElement) {

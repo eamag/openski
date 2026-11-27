@@ -51,4 +51,7 @@ Signing in asks OpenStreetMap for `read_prefs`; granting edit permission adds `w
 that scope, `OSM_WRITES_ENABLED=true` and, when an allowlist is set, a match in it.
 
 D1 stores signed-in accounts, sessions, contributed webcams and queue regions (schema in
-`src/lib/server/db/schema.ts`). The map itself needs neither D1 nor sign-in.
+`src/lib/server/db/schema.ts`). The `ANALYTICS` Workers Analytics Engine dataset (`openski_events`
+in production) records cookieless page views, referrals, route calculations and client performance
+timings from `/api/event` and is created automatically on first write. The map itself needs neither
+D1 nor sign-in.
